@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dropdown, Navbar, TextInput } from 'flowbite-react'
+import { Avatar, Button, Dropdown, Navbar, TextInput } from 'flowbite-react'
 import { Link, useLocation  } from 'react-router-dom'
 import { FaMoon, FaSun } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'; 
@@ -22,16 +22,31 @@ export default function Header() {
                 {theme === 'light' ? <FaSun /> : <FaMoon />}
             </Button>
             { currentUser ? (
-                <div>
-                    <p className='mt-2 text-gray-600'>hey {currentUser.username}!</p>
-                </div>
+                <Dropdown
+                arrowIcon={false}
+                inline
+                label={
+                  <Avatar alt='user' img={currentUser.profilePicture} rounded />
+                }
+                 >
+                    <Dropdown.Header>
+                        <span className='block text-sm'>@{currentUser.username}</span>
+                        <span className='block text-sm font-medium truncate'>
+                            {currentUser.email}
+                        </span>
+                    </Dropdown.Header>
+                    <Link to={'/profile'}>
+                        <Dropdown.Item>Profile</Dropdown.Item>
+                    </Link>
+                    <Dropdown.Divider />
+                    <Dropdown.Item>Sign out</Dropdown.Item>
+                    </Dropdown>
+                
             ) : 
                 <Link to="/sign-in">
                     <Button outline>Sign In</Button>
                 </Link>
             }
-            
-            
             <Navbar.Toggle/>
         </div>
         <Navbar.Collapse>
