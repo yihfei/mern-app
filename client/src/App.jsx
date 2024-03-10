@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import PrivateRoute from './components/PrivateRoute'
 import Profile from './pages/Profile'
+import CreateBrew from './pages/CreateBrew'
 
 
 
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />}/> 
         <Route element={<PrivateRoute />}>
           <Route path="/brews" element={<Brews/>}/>
+          <Route path="/create-brew" element={<CreateBrew/>}/>
           <Route path="/profile" element={<Profile/>}/>  
         </Route>
       </Routes>
