@@ -26,4 +26,17 @@ export const create = async (req, res, next) => {
     }
 };
 
+export const getposts = async (req, res, next) => {
+    try {
+        const id = req.user.id;
+        const posts = await Post.find({userId: id});
+        
+        res.status(200).json({
+            posts
+        })
+    } catch (error) {
+        next(error);
+    }
+}
+
 
