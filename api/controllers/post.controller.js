@@ -32,6 +32,7 @@ export const getposts = async (req, res, next) => {
         const posts = await Post.find({userId: id});
         
         res.status(200).json({
+            id,
             posts
         })
     } catch (error) {
